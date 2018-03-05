@@ -7,11 +7,11 @@ def send_complex_message(**fields):
     name = fields['first_name']
     return requests.post(cfg.mailgun['url'],
         auth = ("api",cfg.mailgun['key']),
-        data = {"from": "Support - AlfonsoFoster.Me <support@alfonsofoster.me>",
+        data = {"from": "YOUR NAME <email@example.com>",
               "to": to,
-              "cc": "thehitman2@msn.com",
+              "cc": "customer_email@example.com",
               "subject": cfg.mailgun['msg'] + ebayID,
-              "html": "Hi " + name  + cfg.messages['BMW']})
+              "html": "Hi " + name  + cfg.messages['INFO']})
 
 if __name__ == "__main__":
     send_complex_message()

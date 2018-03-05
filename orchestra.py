@@ -8,8 +8,6 @@ import wrt_db
 import send_html_email
 import sys,urlparse,requests,logging,cgi,logging_config
 
-#def GenPasswd2(length=8, chars=string.letters+string.digits):
-  #  return ''.join([choice(chars) for i in range(length)])
 
 #Calling my Custom Logging configuration
 logging_config.log()
@@ -45,7 +43,7 @@ logging.info('Sending POST to Paypal with Required Parameters to verify the IPN 
 r = requests.post(VERIFY_URL, params=fields, headers=headers, verify=True)
 logging.info('Checking if IPN Status is Verified and if the Payment has been Completed')
 if r.text == 'VERIFIED' and fields["payment_status"] == 'Completed' :
-    logging.info('IPN is Verified and Payment is Completed')
+    logging.info('IPN is Verified and the Payment is Completed')
     logging.info('Sending email to Customer')
     send_html_email.send_complex_message(**fields)
     logging.info('Writing all the IPN data into the Database')
